@@ -19,17 +19,18 @@ class ExampleApplicationTests {
     private UserService userService;
 
     @Test
-    public void testWrite() {
+    public void testSave() {
         User user = new User();
-        user.setName("zhangsan");
+        user.setName("小黑");
         userService.insert(user);
     }
 
     @Test
-    public void testSave() {
+    public void testUpdate() {
         User user = new User();
-        user.setName("wangwu");
-        userService.insert(user);
+        user.setId(1L);
+        user.setName("小红");
+        userService.update(user);
     }
 
     @Test

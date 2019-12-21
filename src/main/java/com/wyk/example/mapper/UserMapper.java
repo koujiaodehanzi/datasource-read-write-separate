@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @Author: wyk
- * @Description:
+ * @Description: mapper文件，注意@Mapper不可少
  * @Date: Create in 2019/12/21 20:46
  * @Modified By:
  */

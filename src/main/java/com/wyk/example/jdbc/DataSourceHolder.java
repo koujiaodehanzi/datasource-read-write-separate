@@ -24,6 +24,7 @@ public final class DataSourceHolder {
      * 选择默认数据源
      */
     public static void chooseDefaultDataSource() {
+        System.out.println("切换为默认数据源。。");
         CURRENT_DATASOURCE_NAME.remove();
     }
 

@@ -42,11 +42,14 @@ public class DataSourceConfig {
     public DataSource myRoutingDataSource(@Qualifier("masterDataSource") DataSource masterDataSource,
                                           @Qualifier("slave1DataSource") DataSource slave1DataSource,
                                           @Qualifier("slave2DataSource") DataSource slave2DataSource) {
+        // 此处可以优化，多个数据源可从配置文件中读取，解决硬编码问题
         Map<Object, Object> targetDataSources = new HashMap<>(3);
         targetDataSources.put("master", masterDataSource);
         targetDataSources.put("slave1", slave1DataSource);
         targetDataSources.put("slave2", slave2DataSource);
+
         MyRoutingDataSource myRoutingDataSource = new MyRoutingDataSource();
+        // 默认配置源为master
         myRoutingDataSource.setDefaultTargetDataSource(masterDataSource);
         myRoutingDataSource.setTargetDataSources(targetDataSources);
         return myRoutingDataSource;
