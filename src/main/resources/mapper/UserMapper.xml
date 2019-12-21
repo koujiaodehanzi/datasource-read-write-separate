@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyk.example.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.wyk.example.po.User">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, age
+    </sql>
+
+    <insert id="insert" parameterType="com.wyk.example.po.User">
+        insert into user(name, age)
+        values (#{name}, #{age});
+    </insert>
+
+    <update id="update" parameterType="com.wyk.example.po.User">
+        update user
+        set name = #{name}, age = #{age}
+    </update>
+
+    <select id="selectUserList" parameterType="com.wyk.example.po.User" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+        </where>
+    </select>
+</mapper>
